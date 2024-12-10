@@ -1,0 +1,360 @@
+[
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.LoginController",
+    "Method": "CheckLogin",
+    "RelativePath": "api/Login/CheckLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginRequest",
+        "Type": "RequestManagementAPI.Models.MstUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "ExportRequestsToExcel",
+    "RelativePath": "api/Request/ExportRequestsToExcel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetAllMstCategoryRequestManagement",
+    "RelativePath": "api/Request/GetAllMstCategoryRequestManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetAllMstStatusRequestManagement",
+    "RelativePath": "api/Request/GetAllMstStatusRequestManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetAllMstSubCategoryRequestManagement",
+    "RelativePath": "api/Request/GetAllMstSubCategoryRequestManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetAllMstTypeRequestManagement",
+    "RelativePath": "api/Request/GetAllMstTypeRequestManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetAllMstUser",
+    "RelativePath": "api/Request/GetAllMstUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetMstUserById",
+    "RelativePath": "api/Request/GetMstUserById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RequestManagementAPI.Models.MstUser",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetTrxExpensesRequestsManagementById",
+    "RelativePath": "api/Request/GetTrxExpensesRequestsManagementById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RequestManagementAPI.Models.TrxExpensesRequestsManagement",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetTrxRequests",
+    "RelativePath": "api/Request/GetTrxRequests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetVwRequestsManagementById",
+    "RelativePath": "api/Request/GetTrxRequestsManagementById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RequestManagementAPI.Models.TrxRequestsManagement",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetVwExpensesRequestsManagement",
+    "RelativePath": "api/Request/GetVwExpensesRequestsManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createdBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "idRequest",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "GetVwRequestsManagement",
+    "RelativePath": "api/Request/GetVwRequestsManagement",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createdBy",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "divisionId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveDeleteExpense",
+    "RelativePath": "api/Request/SaveDeleteExpense/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "deletedExpense",
+        "Type": "RequestManagementAPI.Models.TrxExpensesRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveDeleteRequest",
+    "RelativePath": "api/Request/SaveDeleteRequest/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "deletedRequest",
+        "Type": "RequestManagementAPI.Models.TrxRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveNewExpense",
+    "RelativePath": "api/Request/SaveNewExpense",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "expense",
+        "Type": "RequestManagementAPI.Models.TrxExpensesRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveNewRequest",
+    "RelativePath": "api/Request/SaveNewRequest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "RequestManagementAPI.Models.TrxRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveUpdateExpense",
+    "RelativePath": "api/Request/SaveUpdateExpense/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedExpense",
+        "Type": "RequestManagementAPI.Models.TrxExpensesRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.RequestController",
+    "Method": "SaveUpdateRequest",
+    "RelativePath": "api/Request/SaveUpdateRequest/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedRequest",
+        "Type": "RequestManagementAPI.Models.TrxRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
