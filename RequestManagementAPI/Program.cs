@@ -21,6 +21,8 @@ builder.Services.AddDbContext<DbContextAssesment>(options =>
 // Register your service as Scoped
 builder.Services.AddScoped<RequestService>();
 builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<PermissionService>();
 
 // *** CORS Configuration ***
 builder.Services.AddCors(options =>

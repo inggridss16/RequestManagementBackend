@@ -1,5 +1,7 @@
 ﻿namespace RequestManagementWeb.Helper
 {
+    using Org.BouncyCastle.Asn1.Ocsp;
+    using RequestManagementAPI.Models;
     using System.Security.Cryptography;
     using System.Text;
 
@@ -47,7 +49,65 @@
         }
     }
 
+    public static class PermissionHelper
+    {
+        public static void CheckPermissionCreate(int userId, int menuId, DbContextAssesment context)
+        {
+            var existingUser = context.MstUsers.Find(userId);
+            var existingRoleMenuPermission = context.MstRoleMenuPermissions
+                .Where(r => r.RoleId == existingUser.RoleId && r.MenuId == menuId)
+                .FirstOrDefault();
 
+            if (existingRoleMenuPermission != null && !existingRoleMenuPermission.IsCreate)
+                throw new UnauthorizedAccessException("You have no access.");
+            else if (existingRoleMenuPermission == null)
+                throw new UnauthorizedAccessException("You have no access."); 
+        }
+        public static void CheckPermissionRead(int userId, int menuId, DbContextAssesment context)
+        {
+            var existingUser = context.MstUsers.Find(userId);
+            var existingRoleMenuPermission = context.MstRoleMenuPermissions
+                .Where(r => r.RoleId == existingUser.RoleId && r.MenuId == menuId)
+                .FirstOrDefault();
+
+            if (existingRoleMenuPermission != null && !existingRoleMenuPermission.IsRead)
+                throw new UnauthorizedAccessException("You have no access.");
+            else if (existingRoleMenuPermission == null)
+                throw new UnauthorizedAccessException("You have no access.");
+        }
+        public static void CheckPermissionUpdate(int userId, int menuId, DbContextAssesment context)
+        {
+            var existingUser = context.MstUsers.Find(userId);
+            var existingRoleMenuPermission = context.MstRoleMenuPermissions
+                .Where(r => r.RoleId == existingUser.RoleId && r.MenuId == menuId)
+                .FirstOrDefault();
+
+            if (existingRoleMenuPermission != null && !existingRoleMenuPermission.IsUpdate)
+                throw new UnauthorizedAccessException("You have no access.");
+            else if (existingRoleMenuPermission == null)
+                throw new UnauthorizedAccessException("You have no access.");
+        }
+        public static void CheckPermissionDelete(int userId, int menuId, DbContextAssesment context)
+        {
+            var existingUser = context.MstUsers.Find(userId);
+            var existingRoleMenuPermission = context.MstRoleMenuPermissions
+                .Where(r => r.RoleId == existingUser.RoleId && r.MenuId == menuId)
+                .FirstOrDefault();
+
+            if (existingRoleMenuPermission != null && !existingRoleMenuPermission.IsDelete)
+                throw new UnauthorizedAccessException("You have no access.");
+            else if (existingRoleMenuPermission == null)
+                throw new UnauthorizedAccessException("You have no access.");
+        }
+
+        public static class MenuID
+        {
+            public static int Request { get; } = 1;
+            public static int Expense { get; } = 2;
+            public static int User { get; } = 3;
+            public static int Permission { get; } = 4;
+        }
+    }
     // Example Usage:
     /*public class Example
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RequestManagementAPI.Models;
+using RequestManagementWeb.Helper;
 using System.Reflection.Metadata;
 
 
@@ -51,8 +52,10 @@ namespace RequestManagementAPI.Services
                 .ToList();
         }
 
-        public List<VwRequestsManagement> GetVwRequestsManagement(int? createdBy, int divisionId, int roleId, int page = 1, int pageSize = 10)
+        public List<VwRequestsManagement> GetVwRequestsManagement(int createdBy, int divisionId, int roleId, int page = 1, int pageSize = 10)
         {
+            PermissionHelper.CheckPermissionRead(createdBy, PermissionHelper.MenuID.Request, _context);
+
             if (roleId == 1)
             {
                 // Non-division User: Return all requests
@@ -72,8 +75,9 @@ namespace RequestManagementAPI.Services
             }
         }
 
-        public int GetVwRequestsManagementCount(int? createdBy, int divisionId, int roleId)
+        public int GetVwRequestsManagementCount(int createdBy, int divisionId, int roleId)
         {
+            PermissionHelper.CheckPermissionRead(createdBy, PermissionHelper.MenuID.Request, _context);
             if (roleId == 1)
             {
                 // Non-division User: Return all requests
@@ -103,6 +107,8 @@ namespace RequestManagementAPI.Services
         // CREATE
         public TrxRequestsManagement CreateTrxRequestsManagement(TrxRequestsManagement request)
         {
+            PermissionHelper.CheckPermissionCreate(request.CreatedBy, PermissionHelper.MenuID.Request, _context);
+            
             request.CreatedDate = DateTime.Now;
             _context.TrxRequestsManagements.Add(request);
             _context.SaveChanges();
@@ -113,6 +119,8 @@ namespace RequestManagementAPI.Services
         // UPDATE
         public TrxRequestsManagement UpdateTrxRequestsManagement(int id, TrxRequestsManagement updatedRequest)
         {
+            PermissionHelper.CheckPermissionUpdate(updatedRequest.UpdatedBy.Value, PermissionHelper.MenuID.Request, _context);
+
             var existingRequest = _context.TrxRequestsManagements.Find(id);
             if (existingRequest == null)
             {
@@ -133,6 +141,8 @@ namespace RequestManagementAPI.Services
         // DELETE is 1
         public TrxRequestsManagement DeleteTrxRequestsManagement(int id, TrxRequestsManagement deletedRequest)
         {
+            PermissionHelper.CheckPermissionDelete(deletedRequest.UpdatedBy.Value, PermissionHelper.MenuID.Request, _context);
+
             var existingRequest = _context.TrxRequestsManagements.Find(id);
             if (existingRequest == null)
             {
@@ -153,7 +163,6 @@ namespace RequestManagementAPI.Services
                 expense.UpdatedBy = deletedRequest.UpdatedBy;
                 expense.UpdatedDate = DateTime.Now;
             }
-
 
             _context.SaveChanges();
             return existingRequest;
@@ -177,8 +186,9 @@ namespace RequestManagementAPI.Services
 
         #region Expenses
 
-        public List<VwExpensesRequestsManagement> GetVwExpensesRequestsManagement(int idRequest, int page = 1, int pageSize = 10)
+        public List<VwExpensesRequestsManagement> GetVwExpensesRequestsManagement(int createdBy, int idRequest, int page = 1, int pageSize = 10)
         {
+            PermissionHelper.CheckPermissionRead(createdBy, PermissionHelper.MenuID.Expense, _context);
 
             return _context.VwExpensesRequestsManagements
                 .Where(r => r.RequestId == idRequest)
@@ -208,6 +218,8 @@ namespace RequestManagementAPI.Services
         // CREATE
         public TrxExpensesRequestsManagement CreateTrxExpensesRequestsManagement(TrxExpensesRequestsManagement expense)
         {
+            PermissionHelper.CheckPermissionCreate(expense.CreatedBy, PermissionHelper.MenuID.Expense, _context);
+
             expense.CreatedDate = DateTime.Now; 
             _context.TrxExpensesRequestsManagements.Add(expense);
             _context.SaveChanges();
@@ -218,6 +230,8 @@ namespace RequestManagementAPI.Services
         // UPDATE
         public TrxExpensesRequestsManagement UpdateTrxExpensesRequestsManagement(int id, TrxExpensesRequestsManagement updatedExpense)
         {
+            PermissionHelper.CheckPermissionUpdate(updatedExpense.UpdatedBy.Value, PermissionHelper.MenuID.Expense, _context);
+
             var existingExpense = _context.TrxExpensesRequestsManagements.Find(id);
             if (existingExpense == null)
             {
@@ -237,6 +251,8 @@ namespace RequestManagementAPI.Services
         // DELETE is 1
         public TrxExpensesRequestsManagement DeleteTrxExpensesRequestsManagement(int id, TrxExpensesRequestsManagement deletedExpense)
         {
+            PermissionHelper.CheckPermissionDelete(deletedExpense.UpdatedBy.Value, PermissionHelper.MenuID.Expense, _context);
+
             var existingExpense = _context.TrxExpensesRequestsManagements.Find(id);
             if (existingExpense == null)
             {

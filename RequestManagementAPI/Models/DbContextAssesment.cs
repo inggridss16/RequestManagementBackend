@@ -18,9 +18,10 @@ namespace RequestManagementAPI.Models
 
         public virtual DbSet<MstCategoryRequestManagement> MstCategoryRequestManagements { get; set; } = null!;
         public virtual DbSet<MstDivision> MstDivisions { get; set; } = null!;
+        public virtual DbSet<MstMenu> MstMenus { get; set; } = null!;
         public virtual DbSet<MstOrganization> MstOrganizations { get; set; } = null!;
-        public virtual DbSet<MstPermission> MstPermissions { get; set; } = null!;
         public virtual DbSet<MstRole> MstRoles { get; set; } = null!;
+        public virtual DbSet<MstRoleMenuPermission> MstRoleMenuPermissions { get; set; } = null!;
         public virtual DbSet<MstStatusRequestManagement> MstStatusRequestManagements { get; set; } = null!;
         public virtual DbSet<MstSubCategoryRequestManagement> MstSubCategoryRequestManagements { get; set; } = null!;
         public virtual DbSet<MstTypeRequestManagement> MstTypeRequestManagements { get; set; } = null!;
@@ -29,6 +30,7 @@ namespace RequestManagementAPI.Models
         public virtual DbSet<TrxRequestsManagement> TrxRequestsManagements { get; set; } = null!;
         public virtual DbSet<VwExpensesRequestsManagement> VwExpensesRequestsManagements { get; set; } = null!;
         public virtual DbSet<VwRequestsManagement> VwRequestsManagements { get; set; } = null!;
+        public virtual DbSet<VwRoleMenuPermission> VwRoleMenuPermissions { get; set; } = null!;
         public virtual DbSet<VwUser> VwUsers { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -64,6 +66,21 @@ namespace RequestManagementAPI.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<MstMenu>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("mstMenu");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Menu)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<MstOrganization>(entity =>
             {
                 entity.ToTable("mstOrganization");
@@ -75,28 +92,34 @@ namespace RequestManagementAPI.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<MstPermission>(entity =>
-            {
-                entity.ToTable("mstPermission");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Permission)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<MstRole>(entity =>
             {
                 entity.ToTable("mstRole");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.DivisionId).HasColumnName("DivisionID");
+
                 entity.Property(e => e.ParentRoleId).HasColumnName("ParentRoleID");
 
                 entity.Property(e => e.Role)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MstRoleMenuPermission>(entity =>
+            {
+                entity.ToTable("mstRoleMenuPermission");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.MenuId).HasColumnName("MenuID");
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<MstStatusRequestManagement>(entity =>
@@ -138,9 +161,13 @@ namespace RequestManagementAPI.Models
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Password)
                     .HasMaxLength(200)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserName)
                     .HasMaxLength(100)
@@ -307,11 +334,42 @@ namespace RequestManagementAPI.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<VwRoleMenuPermission>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("vwRoleMenuPermission");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Menu)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MenuId).HasColumnName("MenuID");
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RoleId).HasColumnName("RoleID");
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<VwUser>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.ToView("vwUsers");
+
+                entity.Property(e => e.CreatedByUser)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Division)
                     .HasMaxLength(50)
@@ -332,6 +390,12 @@ namespace RequestManagementAPI.Models
                 entity.Property(e => e.Role)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedByUser)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.UserName)
                     .HasMaxLength(100)

@@ -16,6 +16,115 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "GetMstMenu",
+    "RelativePath": "api/Permission/GetMstMenu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "GetMstRole",
+    "RelativePath": "api/Permission/GetMstRole",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "GetPermissionById",
+    "RelativePath": "api/Permission/GetPermissionById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RequestManagementAPI.Models.MstRoleMenuPermission",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "GetVwRoleMenuPermission",
+    "RelativePath": "api/Permission/GetVwRoleMenuPermission",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "SaveNewPermission",
+    "RelativePath": "api/Permission/SaveNewPermission",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "permission",
+        "Type": "RequestManagementAPI.Models.MstRoleMenuPermission",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.PermissionController",
+    "Method": "SaveUpdatePermission",
+    "RelativePath": "api/Permission/SaveUpdatePermission/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedPermission",
+        "Type": "RequestManagementAPI.Models.MstRoleMenuPermission",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "RequestManagementAPI.Controllers.RequestController",
     "Method": "ExportRequestsToExcel",
     "RelativePath": "api/Request/ExportRequestsToExcel",
@@ -184,7 +293,7 @@
     "Parameters": [
       {
         "Name": "createdBy",
-        "Type": "System.String",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
@@ -352,6 +461,152 @@
       {
         "Name": "updatedRequest",
         "Type": "RequestManagementAPI.Models.TrxRequestsManagement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "GetAllMstDivision",
+    "RelativePath": "api/User/GetAllMstDivision",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "GetAllMstOrganization",
+    "RelativePath": "api/User/GetAllMstOrganization",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "GetMstRoleByDivisionId",
+    "RelativePath": "api/User/GetMstRoleByDivisionId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "divisionId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "GetUserById",
+    "RelativePath": "api/User/GetUserById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "RequestManagementAPI.Models.MstUser",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "GetVwUser",
+    "RelativePath": "api/User/GetVwUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "SaveDeleteUser",
+    "RelativePath": "api/User/SaveDeleteUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "deletedUser",
+        "Type": "RequestManagementAPI.Models.MstUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "SaveNewUser",
+    "RelativePath": "api/User/SaveNewUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "RequestManagementAPI.Models.MstUser",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RequestManagementAPI.Controllers.UserController",
+    "Method": "SaveUpdateUser",
+    "RelativePath": "api/User/SaveUpdateUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedUser",
+        "Type": "RequestManagementAPI.Models.MstUser",
         "IsRequired": true
       }
     ],

@@ -35,9 +35,13 @@ namespace RequestManagementAPI.Controllers
                 var user = _requestService.GetMstUserById(id);
                 return Ok(user);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -71,21 +75,32 @@ namespace RequestManagementAPI.Controllers
         [HttpGet ("GetTrxRequests")]
         public IActionResult GetTrxRequests(int page = 1, int pageSize = 10)
         {
-            var requests = _requestService.GetTrxRequestsManagement(page, pageSize);
-            var totalCount = _requestService.GetTrxRequestsManagementTotalCount(); // For pagination info
-
-            // Create a response model with paging information if needed
-            var response = new
+            try
             {
-                Data = requests,
-                CurrentPage = page,
-                PageSize = pageSize,
-                TotalCount = totalCount,
-                TotalPages = (int)Math.Ceiling((double)totalCount / pageSize)
-            };
+                var requests = _requestService.GetTrxRequestsManagement(page, pageSize);
+                var totalCount = _requestService.GetTrxRequestsManagementTotalCount(); // For pagination info
 
+                // Create a response model with paging information if needed
+                var response = new
+                {
+                    Data = requests,
+                    CurrentPage = page,
+                    PageSize = pageSize,
+                    TotalCount = totalCount,
+                    TotalPages = (int)Math.Ceiling((double)totalCount / pageSize)
+                };
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpGet("GetVwRequestsManagement")]
@@ -107,9 +122,13 @@ namespace RequestManagementAPI.Controllers
 
                 return Ok(response);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message); 
+            }
             catch (Exception ex)
             {
-                return Ok(ex); 
+                return BadRequest(ex.Message); 
             }
         }
 
@@ -122,9 +141,13 @@ namespace RequestManagementAPI.Controllers
 
                 return Ok(data);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -139,11 +162,16 @@ namespace RequestManagementAPI.Controllers
                 var request = _requestService.GetVwRequestsManagementById(id);
                 return Ok(request);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("SaveUpdateRequest/{id}")]
         public IActionResult SaveUpdateRequest(int id, [FromBody] TrxRequestsManagement updatedRequest)
         {
@@ -152,11 +180,16 @@ namespace RequestManagementAPI.Controllers
                 var updated = _requestService.UpdateTrxRequestsManagement(id, updatedRequest);
                 return Ok(updated);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("SaveDeleteRequest/{id}")]
         public IActionResult SaveDeleteRequest(int id, [FromBody] TrxRequestsManagement deletedRequest)
         {
@@ -165,9 +198,13 @@ namespace RequestManagementAPI.Controllers
                 var deleted = _requestService.DeleteTrxRequestsManagement(id, deletedRequest);
                 return Ok(deleted);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -176,11 +213,11 @@ namespace RequestManagementAPI.Controllers
 
         #region Expenses
         [HttpGet("GetVwExpensesRequestsManagement")]
-        public IActionResult GetVwExpensesRequestsManagement(string createdBy, int idRequest, int page = 1, int pageSize = 10)
+        public IActionResult GetVwExpensesRequestsManagement(int createdBy, int idRequest, int page = 1, int pageSize = 10)
         {
             try
             {
-                var expenses = _requestService.GetVwExpensesRequestsManagement(idRequest, page, pageSize);
+                var expenses = _requestService.GetVwExpensesRequestsManagement(createdBy, idRequest, page, pageSize);
                 var totalCount = _requestService.GetVwExpensesRequestsManagementTotalCount(idRequest); // For pagination info
 
                 // Create a response model with paging information if needed
@@ -196,9 +233,13 @@ namespace RequestManagementAPI.Controllers
 
                 return Ok(response);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
 
         }
@@ -219,9 +260,13 @@ namespace RequestManagementAPI.Controllers
 
                 return Ok(data);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
         
@@ -233,9 +278,13 @@ namespace RequestManagementAPI.Controllers
                 var request = _requestService.GetTrxExpensesRequestsManagementById(id);
                 return Ok(request);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
         
@@ -247,9 +296,13 @@ namespace RequestManagementAPI.Controllers
                 var updated = _requestService.UpdateTrxExpensesRequestsManagement(id, updatedExpense);
                 return Ok(updated);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
         
@@ -261,9 +314,13 @@ namespace RequestManagementAPI.Controllers
                 var deleted = _requestService.DeleteTrxExpensesRequestsManagement(id, deletedExpense);
                 return Ok(deleted);
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return Ok(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -276,7 +333,8 @@ namespace RequestManagementAPI.Controllers
             try
             {
                 // 1. Get data (for Non-division Managers, roleId == 1)
-                var requests = _requestService.GetVwRequestsManagement(null, 0, 1, 1, int.MaxValue); // Get all data for export
+                // harcode user ID = 1 (alex)
+                var requests = _requestService.GetVwRequestsManagement(1, 0, 1, 1, int.MaxValue); // Get all data for export
 
                 // 2. Create Excel workbook and sheet
                 IWorkbook workbook = new XSSFWorkbook();
@@ -328,9 +386,13 @@ namespace RequestManagementAPI.Controllers
                 // 7. Return the Excel file as a FileResult
                 return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Requests.xlsx");
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message); // Handle exceptions appropriately
+                return BadRequest(ex.Message);
             }
         }
     }

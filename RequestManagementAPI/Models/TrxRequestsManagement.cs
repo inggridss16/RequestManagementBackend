@@ -14,8 +14,8 @@ namespace RequestManagementAPI.Models
         public string SubCategory { get; set; } = null!;
         public int Status { get; set; }
         public decimal Expenses { get; set; }
-        public int? CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsDeleted { get; set; }

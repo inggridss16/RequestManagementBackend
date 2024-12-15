@@ -22,7 +22,7 @@ namespace RequestManagementAPI.Models
         public string? CategoryName { get; set; }
         public string? SubCategoryName { get; set; }
         public string? StatusName { get; set; }
-        public string? UserName { get; set; }
+        public string UserName { get; set; } = null!;
         public int? OrganizationId { get; set; }
         public string? Organization { get; set; }
         public int? DivisionId { get; set; }
@@ -30,7 +30,7 @@ namespace RequestManagementAPI.Models
         public int? RoleId { get; set; }
         public string? Role { get; set; }
         public int? ParentRoleIdcreatedBy { get; set; }
-        public string? CreatedByUser { get; set; }
+        public string CreatedByUser { get; set; } = null!;
         public int? ParentRoleIdupdatedBy { get; set; }
     }
 }
